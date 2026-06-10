@@ -2,7 +2,7 @@ const LINKS = {
   promo1: "https://google.com/",
   promo2: "https://youtube.com/",
   promo3: "https://facebook.com/",
-  promo4: "link",
+  promo4: "https://shopee.com/",
   promo5: "link",
   promo6: "link",
   promo7: "link",
