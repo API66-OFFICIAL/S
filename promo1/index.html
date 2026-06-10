@@ -186,50 +186,56 @@ Powered by API66 AI Assistant
 
 </div>
 
-<!-- ===================== -->
 <!-- LOAD LINKS.JS -->
-<!-- ===================== -->
 <script src="/links.js"></script>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-// ambil folder (promo1, promo2, dst)
-const folder = window.location.pathname.split("/")[1];
+    // ambil folder dari URL
+    const pathParts = window.location.pathname.split("/").filter(Boolean);
+    const folder = pathParts[0];
 
-// ambil link dari links.js
-const redirectLink = LINKS ? LINKS[folder] : null;
+    // ambil link dari links.js
+    const redirectLink = window.LINKS?.[folder];
 
-const vipBtn = document.getElementById("vipBtn");
-const statusBox = document.getElementById("status");
+    const vipBtn = document.getElementById("vipBtn");
+    const statusBox = document.getElementById("status");
 
-vipBtn.addEventListener("click", function(){
-
-    vipBtn.classList.add("active");
-    vipBtn.innerHTML = "✓ VIP ACTIVE";
-    vipBtn.disabled = true;
-
-    statusBox.innerHTML =
-    'Status: <span class="online">AI BOT ONLINE</span><br>Sinkronisasi sistem VIP Mohon Tunggu Sesaat...';
-
-    if(navigator.vibrate){
-        navigator.vibrate(120);
+    if (!vipBtn || !statusBox) {
+        console.error("Element tidak ditemukan");
+        return;
     }
 
-    console.log("Folder:", folder);
-    console.log("Redirect:", redirectLink);
+    vipBtn.addEventListener("click", function () {
 
-    setTimeout(function(){
+        vipBtn.classList.add("active");
+        vipBtn.innerHTML = "✓ VIP ACTIVE";
+        vipBtn.disabled = true;
 
-        if(redirectLink){
-            window.location.replace(redirectLink);
-        } else {
-            alert("Link tidak ditemukan untuk: " + folder);
+        statusBox.innerHTML =
+        'Status: <span class="online">AI BOT ONLINE</span><br>Sinkronisasi sistem VIP Mohon Tunggu Sesaat...';
+
+        if (navigator.vibrate) {
+            navigator.vibrate(120);
         }
 
-    }, 0);
+        console.log("Folder:", folder);
+        console.log("Redirect:", redirectLink);
+
+        setTimeout(function () {
+
+            if (redirectLink) {
+                window.location.replace(redirectLink);
+            } else {
+                alert("Link tidak ditemukan untuk: " + folder);
+            }
+
+        }, 0);
+
+    });
 
 });
-
 </script>
 
 </body>
