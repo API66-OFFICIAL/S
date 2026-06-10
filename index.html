@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP AI Access</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050816;
+color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.bg{
+position:fixed;
+inset:0;
+background:radial-gradient(circle at top,#16213e,#050816 60%);
+}
+
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+background:#00f7ff;
+filter:blur(120px);
+opacity:.15;
+top:-100px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.container{
+position:relative;
+z-index:2;
+width:100%;
+max-width:420px;
+padding:24px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+border-radius:28px;
+padding:28px;
+text-align:center;
+box-shadow:0 0 30px rgba(0,247,255,.08);
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:8px 14px;
+border-radius:999px;
+background:rgba(0,247,255,.12);
+color:#7ffcff;
+font-size:13px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.dot{
+width:8px;
+height:8px;
+background:#00ff88;
+border-radius:50%;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{opacity:.3;}
+}
+
+h1{
+font-size:34px;
+font-weight:800;
+line-height:1.15;
+margin-bottom:12px;
+}
+
+.ai{
+color:#00f7ff;
+}
+
+p{
+color:#cfd8e3;
+font-size:15px;
+line-height:1.7;
+}
+
+.status{
+margin-top:24px;
+padding:14px;
+border-radius:16px;
+background:rgba(255,255,255,.04);
+font-size:14px;
+font-weight:600;
+line-height:1.7;
+}
+
+.online{
+color:#00ff88;
+}
+
+.btn{
+width:100%;
+margin-top:24px;
+padding:18px;
+border:none;
+border-radius:16px;
+font-size:18px;
+font-weight:800;
+cursor:pointer;
+color:white;
+background:linear-gradient(135deg,#00c6ff,#0072ff);
+transition:.3s;
+}
+
+.btn:hover{
+opacity:.95;
+}
+
+.btn.active{
+background:linear-gradient(135deg,#00d26a,#00a94f);
+box-shadow:0 0 25px rgba(0,255,136,.35);
+}
+
+.footer{
+margin-top:16px;
+font-size:12px;
+color:#8a94a6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="glow"></div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="badge">
+<div class="dot"></div>
+AI SYSTEM READY
+</div>
+
+<h1>
+DAFTAR <span class="ai">VIP</span>
+</h1>
+
+<p>
+Aktifkan akses VIP untuk terhubung dengan sistem AI dan mendapatkan pengalaman yang lebih optimal.
+</p>
+
+<div class="status" id="status">
+Status: <span class="online">MENUNGGU AKTIVASI</span>
+</div>
+
+<button id="vipBtn" class="btn">
+DAFTAR VIP API66
+</button>
+
+<div class="footer">
+Powered by API66 AI Assistant
+</div>
+
+</div>
+
+</div>
+
+<!-- ===================== -->
+<!-- LOAD LINKS.JS -->
+<!-- ===================== -->
+<script src="/links.js"></script>
+
+<script>
+
+// ambil folder (promo1, promo2, dst)
+const folder = window.location.pathname.split("/")[1];
+
+// ambil link dari links.js
+const redirectLink = LINKS ? LINKS[folder] : null;
+
+const vipBtn = document.getElementById("vipBtn");
+const statusBox = document.getElementById("status");
+
+vipBtn.addEventListener("click", function(){
+
+    vipBtn.classList.add("active");
+    vipBtn.innerHTML = "✓ VIP ACTIVE";
+    vipBtn.disabled = true;
+
+    statusBox.innerHTML =
+    'Status: <span class="online">AI BOT ONLINE</span><br>Sinkronisasi sistem VIP Mohon Tunggu Sesaat...';
+
+    if(navigator.vibrate){
+        navigator.vibrate(120);
+    }
+
+    console.log("Folder:", folder);
+    console.log("Redirect:", redirectLink);
+
+    setTimeout(function(){
+
+        if(redirectLink){
+            window.location.replace(redirectLink);
+        } else {
+            alert("Link tidak ditemukan untuk: " + folder);
+        }
+
+    }, 0);
+
+});
+
+</script>
+
+</body>
+</html>
