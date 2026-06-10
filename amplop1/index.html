@@ -192,16 +192,15 @@ document.getElementById("vipBtn").addEventListener("click",function(){
 this.classList.add("active");
 this.innerHTML = "✓ VIP ACTIVE";
 
+```javascript
 document.getElementById("status").innerHTML =
-'Status: <span class="online">AI BOT ONLINE</span>';
-
-if(navigator.vibrate){
-navigator.vibrate(120);
-}
+'Status: <span class="online">AI BOT ONLINE</span><br>Sinkronisasi sistem VIP...';
 
 setTimeout(()=>{
 window.location.href = redirectLink;
-},1200);
+},5000);
+```
+
 
 });
 
